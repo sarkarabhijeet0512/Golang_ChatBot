@@ -17,7 +17,7 @@ func main() {
 	router.HandleFunc("/webhook", webhookGetHandler).Methods("GET")
 	router.HandleFunc("/webhook", webhookPostHandler).Methods("POST")
 	fmt.Printf("Server up and running. Running on PORT: %s\n", port)
-	err := http.ListenAndServe(port, router)
+	err := http.ListenAndServe("localhost"+port, router)
 	if err != nil {
 		log.Fatal("error listening to server: ", err)
 	}
