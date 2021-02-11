@@ -17,7 +17,7 @@ func main() {
 	router.HandleFunc("/webhook", webhookGetHandler).Methods("GET")
 	router.HandleFunc("/webhook", webhookPostHandler).Methods("POST")
 	fmt.Printf("Server up and running. Running on PORT: %s\n", port)
-	err := http.ListenAndServe("localhost"+port, router)
+	err := http.ListenAndServe(port, router)
 	if err != nil {
 		log.Fatal("error listening to server: ", err)
 	}
@@ -36,5 +36,5 @@ func getPort() string {
 		port = ":3500"
 		fmt.Printf("PORT NOT DEFINED. USING THE PORT %s as the running port\n", port)
 	}
-	return port
+	return ":" + port
 }
