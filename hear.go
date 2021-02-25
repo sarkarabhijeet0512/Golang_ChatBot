@@ -31,8 +31,10 @@ func hear(word string, userid string) string {
 		var str = `Hey there! Hi Whats good? Hello! How are you?`
 
 		for _, match := range re.FindAllString(str, -1) {
-			SendMessage(userid, match)
-			fmt.Println(match)
+			keyValuePair(match)
+			SendMessage(userid, keyValuePair(match))
+			fmt.Println(keyValuePair(match))
+
 		}
 	}
 
@@ -49,4 +51,13 @@ func (h *hearStruct) listen(userid string) {
 		hear(h.text, userid)
 		fmt.Println("TEXT PASSED", h.text)
 	}
+}
+func keyValuePair(match string) string {
+	response := make(map[string]string)
+	response["Hi"] = "Hi there!"
+	response["Hello"] = "Hi there!"
+	response["What"] = "Ask for something From /What you can do?/What are you?"
+	response["How"] = "Ask for something From /How are you?"
+	response["Start"] = "Hello there! Seems Like this is the first time we're talking! call me GO Bot"
+	return response[match]
 }

@@ -1,4 +1,4 @@
-module chatbot
+module GoLang_ChatBot
 
 go 1.15
 

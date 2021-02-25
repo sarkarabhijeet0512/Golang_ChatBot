@@ -10,17 +10,24 @@ import (
 	"strings"
 )
 
+// Profile struct is for getting the profile of the user from server usin oauth server
 type Profile struct {
 	FirstName string `json:"first_name"`
 	LastName  string `json:"lastName"`
 	ProilePic string `json:"proile_pic"`
 }
+
+// TextReplyRecipientstruct is the struct that is used for Sending data formats
 type TextReplyRecipientstruct struct {
 	ID string `json:"id"`
 }
+
+// TextReplystruct struct
 type TextReplystruct struct {
 	Text string `json:"text"`
 }
+
+// CallSendAPIResponse is for responses from user profile
 type CallSendAPIResponse struct {
 	RecID     string `json:"recipient_id"`
 	MessageID string `json:"message_id"`
@@ -101,7 +108,6 @@ func webhookPostHandler(response http.ResponseWriter, request *http.Request) {
 				if messaging.Message != nil {
 					attachments := messaging.Message.Attachments
 					text := messaging.Message.Text
-					// regex := messaging.Message.Regex
 					if attachments != nil {
 						SendMessage(messaging.Sender.ID, "Oops!Cant do that yet")
 						fmt.Println("Attachment.Cannot process")
