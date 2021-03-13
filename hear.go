@@ -32,8 +32,9 @@ func hear(word string, userid string) string {
 
 		for _, match := range re.FindAllString(str, -1) {
 			// keyValuePair(match)
-			// key := keyValuePair()
-			SendMessage(userid, keyValuePair(match))
+			key := keyValuePair(match)
+			fmt.Println(key)
+			SendMessage(userid, key)
 			fmt.Println(keyValuePair(match))
 
 		}
