@@ -11,33 +11,33 @@ type hearStruct struct {
 }
 
 func hear(word string, userid string) string {
-	if word == "hello" {
-		SendMessage(userid, "Hi there!!")
-		// return "In this case,we'll trigger anything that will be handled when 'Hello' is triggered"
-	}
-	if word == "GET_STARTED" {
-		SendMessage(userid, "Hello there! Seems Like this is the first time we're talking! call me GO Bot")
-	}
-	if word == "How are you?" {
-		SendMessage(userid, "Thats Nice of you to ask that to me I am good What about You?!")
-	}
-	if word == "What are you?" {
-		SendMessage(userid, "I am a chat bot named Go bot!")
-	}
-	if word == "What can you do?" {
-		SendMessage(userid, "I can do something")
-	} else {
+	// if word == "hello" {
+	// 	SendMessage(userid, "Hi there!!")
+	// 	// return "In this case,we'll trigger anything that will be handled when 'Hello' is triggered"
+	// }
+	// if word == "GET_STARTED" {
+	// 	SendMessage(userid, "Hello there! Seems Like this is the first time we're talking! call me GO Bot")
+	// }
+	// if word == "How are you?" {
+	// 	SendMessage(userid, "Thats Nice of you to ask that to me I am good What about You?!")
+	// }
+	// if word == "What are you?" {
+	// 	SendMessage(userid, "I am a chat bot named Go bot!")
+	// }
+	if word != "" {
 		var re = regexp.MustCompile("(?i)" + word)
-		var str = `Hey there! Hi Whats good? Hello! How are you?`
+		var str = `Hey there! Hi Whats good? Hello! How are you? What are you?`
 
 		for _, match := range re.FindAllString(str, -1) {
 			// keyValuePair(match)
 			key := keyValuePair(match)
 			fmt.Println(key)
 			SendMessage(userid, key)
-			fmt.Println(keyValuePair(match))
+			// fmt.Println(keyValuePair(match))
 
 		}
+	} else {
+		SendMessage(userid, "Ask from something like/what can you do?/what are you?/how are you?/start/")
 	}
 
 	return ""
@@ -61,5 +61,8 @@ func keyValuePair(match string) string {
 	response["What"] = "Ask for something From /What you can do?/What are you?"
 	response["How"] = "Ask for something From /How are you?"
 	response["Start"] = "Hello there! Seems Like this is the first time we're talking! call me GO Bot"
+	response["How are you"] = "Thats Nice of you to ask that to me I am good What about You?!"
+	response["Get started"] = "Hello there! Seems Like this is the first time we're talking! call me GO Bot"
+	response["What are you?"] = "I am a chat bot named Go bot!"
 	return response[match]
 }
