@@ -31,7 +31,8 @@ func hear(word string, userid string) string {
 		var str = `Hey there! Hi Whats good? Hello! How are you?`
 
 		for _, match := range re.FindAllString(str, -1) {
-			keyValuePair(match)
+			// keyValuePair(match)
+			// key := keyValuePair()
 			SendMessage(userid, keyValuePair(match))
 			fmt.Println(keyValuePair(match))
 
